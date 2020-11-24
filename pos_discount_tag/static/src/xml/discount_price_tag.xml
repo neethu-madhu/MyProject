@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+    <!--  add field discount_tag above the product item  -->
+    <t t-name="Product" t-inherit="point_of_sale.Product" t-inherit-mode="extension">
+         <xpath expr="//span[hasclass('price-tag')]">
+             <t t-if="product.discount_tag">
+                 <span class="discount-tag">
+                     <i class="fa fa-tag"></i>
+                        <t t-esc="product.discount_tag"/>%
+                 </span>
+             </t>
+         </xpath>
+    </t>
+
+    <!-- show discount in the orderline   -->
+<!--    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">-->
+<!--        <xpath expr="//ul[hasclass('info-list')]">-->
+<!--            <t t-if="line.get_product().discount_tag">-->
+<!--                <span class="Order-line-discount">-->
+<!--                    Discount:-->
+<!--                        <t t-esc="line.get_product().discount_tag" />%-->
+<!--                </span>-->
+<!--            </t>-->
+<!--        </xpath>-->
+<!--    </t>-->
+</templates>

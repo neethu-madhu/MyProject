@@ -1,0 +1,8 @@
+<odoo>
+    <template id="pos_assets_discount_tag" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/pos_discount_tag/static/src/css/discount_price_tag.css"/>
+            <script type="text/javascript" src="/pos_discount_tag/static/src/js/discount_price_tag.js"/>
+        </xpath>
+    </template>
+</odoo>
