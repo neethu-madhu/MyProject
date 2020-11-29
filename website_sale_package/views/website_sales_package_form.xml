@@ -1,77 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="create_sales_package" name="Create New Packages">
+    <template id="create_sales_package" name="Package Form">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="oe_structure">
-                    <div class="container">
+                    <section class="s_title parallax s_parallax_is_fixed bg-black-50 pt24 pb24" data-vcss="001" data-snippet="s_title" data-scroll-background-ratio="1">
+                        <span class="s_parallax_bg oe_img_bg" style="background-image: url('/web/image/website.s_banner_default_image'); background-position: 50% 0;"/>
+                        <div class="o_we_bg_filter bg-black-50"/>
+                        <div class="container">
+                            <h1>Sales Package</h1>
+                        </div>
+                    </section>
+                </div><br/>
+                <div class="container">
+                    <div class="col-md-12">
                         <form action="/sale_package/form/submit">
                             <div class="form-group">
-                                <label for="package_name">Package Name</label>
-                                <input type="text" class="form-control" name="package_name" id="package_name" required="true"/>
+                                <label for="package_name">Name:</label>
+                                <input type="text" class="form-control" name="package_name" id="package_name" required="true" />
                             </div>
                             <div class="form-group">
-                                <label for="width">Width</label>
-                                <input type="text" class="form-control" name="width" id="width" required="true"/>
+                                <label for="width">Width:</label>
+                                <input type="Integer" class="form-control" name="width" id="width" required="true" />
                             </div>
                             <div class="form-group">
-                                <label for="length">Length</label>
-                                <input type="text" class="form-control" name="length" id="length" required="true"/>
+                                <label for="height">Height:</label>
+                                <input type="Integer" class="form-control" name="height" id="height" required="true" />
                             </div>
                             <div class="form-group">
-                                <label for="height">Height</label>
-                                <input type="text" class="form-control" name="height" id="height" required="true"/>
+                                <label for="length">Length:</label>
+                                <input type="Integer" class="form-control" name="length" id="length" required="true" />
                             </div>
                             <div class="form-group">
-                                <label for="maximum_weight">Weight</label>
-                                <input type="text" class="form-control" name="maximum_weight" id="maximum_weight" required="true"/>
+                                <label for="maximum_weight">Weight:</label>
+                                <input type="Integer" class="form-control" name="maximum_weight" id="maximum_weight" required="true" />
                             </div>
+                            <button type="submit" class="btn btn-primary">Create</button>
                         </form>
+                    </div>
+                </div>
+              </div>
+          </t>
+    </template>
+    <template id="package_thanks" name="Customer Form Successfully Submitted">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="alert alert-success">
+                            Customer created successfully.
+                        </div>
                     </div>
                 </div>
             </div>
         </t>
     </template>
-
-    <record id="package_thanks" model="website.page">
-        <field name="name">Thanks</field>
-        <field name="type">qweb</field>
-        <field name="url">/sale_package/form/submit</field>
-        <field name="website_indexed" eval="False"/>
-        <field name="is_published">True</field>
-        <field name="key">website_sale_package.package_thanks</field>
-        <field name="arch" type="xml">
-            <t name="Thanks (Contact us)" t-name="website_sale_package.package_thanks">
-                <t t-call="website.layout">
-                  <div id="wrap">
-                    <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_1"/>
-                    <div class="container mt-4">
-                        <div class="row">
-                            <div class="col-lg-7 col-xl-6 mr-lg-auto oe_structure">
-                                <section class="pt40 s_text_block pb40 o_colored_level o_cc o_cc1" data-snippet="s_text_block" data-name="Text">
-                                    <div class="container">
-                                        <span class="d-block fa fa-4x fa-thumbs-up mx-auto rounded-circle bg-primary"/><br/>
-                                        <h1 class="text-center">Thank You!</h1>
-                                        <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
-                                            <hr class="mx-auto border-top w-50 border-dark text-center"/>
-                                        </div>
-                                        <h5 class="text-center">
-                                            <span class="fa fa-check-circle"/>
-                                            <span>Your message has been sent <b>successfully</b></span>
-                                        </h5>
-                                        <p class="text-center">We will get back to you shortly.</p>
-                                    </div>
-                                </section>
-                            </div>
-<!--                            <div class="col-lg-4">-->
-<!--                                <t t-call="website.company_description"/>-->
-<!--                            </div>-->
-                        </div>
-                    </div>
-                    <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_2"/>
-                  </div>
-                </t>
-            </t>
-        </field>
-    </record>
 </odoo>
