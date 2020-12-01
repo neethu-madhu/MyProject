@@ -7,9 +7,6 @@ class WebsiteSalePackage(http.Controller):
     @http.route('/sale_package/form', type="http", auth='public', website=True)
     def sales_package_form(self, **post):
         print('Page loaded')
-        # return 'hello'
-        # package = request.env['sales.package'].sudo().search([])
-        # print('Model loaded', package)
         return request.render('website_sale_package.create_sales_package', {})
 
     @http.route(['/sale_package/form/submit'], type='http', auth="public", website=True)

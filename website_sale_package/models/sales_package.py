@@ -15,3 +15,9 @@ class SalesPackage(models.Model):
     height = fields.Integer(string="height")
     length = fields.Integer(string="length")
     maximum_weight = fields.Integer(string="maximum_weight")
+    _sql_constraints = [
+        ('unique_package_name', 'unique (package_name)', 'package_name address already exists!')
+    ]
+
+
+
