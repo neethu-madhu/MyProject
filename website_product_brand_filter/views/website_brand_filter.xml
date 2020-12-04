@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--  template to display the brands  -->
+    <template id="products_brands" inherit_id="website_sale.products" active="False" customize_show="True" name="Brand Filter">
+        <xpath expr="//div[@id='products_grid_before']" position="before">
+            <t t-set="enable_left_column" t-value="True"/>
+        </xpath>
+        <xpath expr="//div[@id='products_grid_before']" position="inside">
+            <button type="button" class="btn btn-link d-lg-none"
+                data-target="#wsale_products_brand_collapse" data-toggle="collapse">
+                Show brands
+            </button>
+            <div class="collapse d-lg-block" id="wsale_products_brand_collapse">
+                <ul class="nav nav-pills flex-column mb-2">
+                    <li class="nav-item">
+                        <a t-att-href="keep('/shop', brand=0)" t-attf-class="nav-link #{'' if brand else 'active'} o_not_editable">All Products</a>
+                    </li>
+                    <!--<t t-foreach="brand" t-as="c">
+                        <t t-call="website_product_brand_filter.brands_recursive" />
+                    </t>-->
+                    <t t-foreach="website.get_brands()" t-as="brand">
+                        <li class="nav-item">
+                            <a t-att-href="'/shop/brand' + slug(brand)">
+                                <t t-esc="brand.brand_name"/>
+                            </a>
+                        </li>
+                    </t>
+                </ul>
+            </div>
+        </xpath>
+    </template>
+</odoo>
