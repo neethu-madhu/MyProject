@@ -15,12 +15,9 @@
                     <li class="nav-item">
                         <a t-att-href="keep('/shop', brand=0)" t-attf-class="nav-link #{'' if brand else 'active'} o_not_editable">All Products</a>
                     </li>
-                    <!--<t t-foreach="brand" t-as="c">
-                        <t t-call="website_product_brand_filter.brands_recursive" />
-                    </t>-->
                     <t t-foreach="website.get_brands()" t-as="brand">
                         <li class="nav-item">
-                            <a t-att-href="'/shop/brand' + slug(brand)">
+                            <a t-att-href="'/shop/brand/' + slug(brand)">
                                 <t t-esc="brand.brand_name"/>
                             </a>
                         </li>

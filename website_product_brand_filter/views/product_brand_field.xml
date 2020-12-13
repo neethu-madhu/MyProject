@@ -10,15 +10,4 @@
             </xpath>
         </field>
     </record>
-
-<!--    <record id="product_template_inherits" model="ir.ui.view">
-        <field name="name">Product View Inherits</field>
-        <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_form_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='company_id']" position="before">
-                <field name="brand_name_id"/>
-            </xpath>
-        </field>
-    </record>-->
 </odoo>

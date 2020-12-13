@@ -23,6 +23,7 @@
         'views/product_brand_field.xml',
         'views/website_brand_filter.xml',
         # 'views/templates.xml',
+        # 'data/menu.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
