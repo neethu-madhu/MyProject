@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--inherits sale.order adding required changes-->
+    <record id="sale_order_inherit" model="ir.ui.view">
+            <field name="name">sale.order.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <!--adds a new field Packages just below customer field to select packages-->
+                <field name="partner_id" position="after">
+                    <field name="package_name_ids" widget="many2many_tags"/>
+                </field>
+
+                <!--adds new page Package Info which contains the details of selected packages-->
+                <xpath expr="//page[@name='other_information']" position="after">
+                        <page string="Package Info">
+                            <field name="package_info_ids"/>
+                        </page>
+                </xpath>
+
+                <!--add field Package in the order line-->
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
+                    <field name="order_line_package_id"/>
+                </xpath>
+
+                <!--add smart button Package Bundle after sale order confirmation-->
+                <div class="oe_button_box" name="button_box" position="inside">
+                    <button name="get_package_info"
+                            string="Packages"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-plus" attrs="{'invisible': ['|' , ('state','!=', 'sale')]}">
+                        <!--<field name="package_count"  string="packages" widget="statinfo"/>-->
+                    </button>
+                </div>
+            </field>
+    </record>
+</odoo>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!--define tree view for Package Bundles-->
+    <record model="ir.ui.view" id="package_bundle_tree">
+        <field name="name">package.bundles.tree</field>
+        <field name="model">package.bundles</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false">
+                <field name="sequence_no"/>
+                <field name="sale_order_reference"/>
+                <field name="sale_partner_id"/>
+                <field name="sale_order_expected_date"/>
+                <field name="sale_order_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--define form view for package bundles-->
+    <record model="ir.ui.view" id="package_bundle_form">
+        <field name="name">package.bundles.form</field>
+        <field name="model">package.bundles</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false">
+                <sheet>
+                    <div>
+                        <h1><field name="sequence_no"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sale_order_reference"/>
+                            <field name="sale_order_date"/>
+                        </group>
+                        <group>
+                             <field name="sale_order_expected_date"/>
+                             <field name="sale_partner_id"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Product Details">
+                            <field name="sale_order_ids">
+                               <tree>
+                                    <field name="name" string="Product"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="order_line_package_id"/>
+                                    <field name="width_package"/>
+                                    <field name="height_package"/>
+                                    <field name="length_package"/>
+                                    <field name="weight_package"/>
+                                </tree>
+                                <!--<field name="sale_order_line_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_subtotal"/>
+                                </tree>-->
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--define action-->
+    <record id="action_package_bundles" model="ir.actions.act_window">
+        <field name="name">Package Bundles</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">package.bundles</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new record!
+            </p>
+        </field>
+    </record>
+
+    <!--define menu item Package bundles-->
+    <menuitem id="package_bundles_root"
+              name="Package Bundles"
+              parent="stock.menu_stock_inventory_control"
+              action="action_package_bundles"
+              sequence="0"/>
+
+</odoo>

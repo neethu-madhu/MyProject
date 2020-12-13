@@ -1,0 +1,59 @@
+<odoo>
+  <data>
+      <!--define tree view-->
+      <record model="ir.ui.view" id="package_tree">
+          <field name="name">sales.package.package.tree</field>
+          <field name="model">sales.package</field>
+          <field name="arch" type="xml">
+              <tree string="Packages">
+                  <field name="package_name"/>
+                  <field name="length"/>
+                  <field name="height"/>
+                  <field name="width"/>
+                  <field name="maximum_weight"/>
+              </tree>
+          </field>
+      </record>
+
+      <!--define form view-->
+      <record model="ir.ui.view" id="package_form">
+          <field name="name">sales.package.package.form</field>
+          <field name="model">sales.package</field>
+          <field name="arch" type="xml">
+              <form string="Packages">
+                  <sheet>
+                      <group>
+                          <group>
+                              <field name="package_name"/>
+                              <field name="length"/>
+                              <field name="height"/>
+                          </group>
+                          <group>
+                               <field name="width"/>
+                               <field name="maximum_weight"/>
+                          </group>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <!--define action-->
+      <record id="action_package" model="ir.actions.act_window">
+          <field name="name">Packages</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">sales.package</field>
+          <field name="view_mode">tree,form</field>
+          <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                  Create a new record!
+              </p>
+          </field>
+      </record>
+      <!--define main menu/parent menu-->
+      <menuitem id="sales_package_root" name="Sales Package" parent="stock.menu_stock_config_settings" sequence="-1"/>
+      <!--define sub menu-->
+          <menuitem id="sales_package_packages" name="Packages" parent="sales_package_root" action="action_package"/>
+
+  </data>
+</odoo>

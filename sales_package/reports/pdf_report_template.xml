@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_package_bundles">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div>
+                        <br/>
+                        <h1 align="center">Package Bundles</h1>
+                        <br/>
+                    </div>
+                    <div t-if="from_date">
+                        <strong>Date From:</strong>
+                        <span t-esc="from_date"/>
+                    </div>
+                    <div t-if="to_date">
+                        <strong>Date To:</strong>
+                        <span t-esc="to_date"/>
+                    </div>
+                    <div t-if="_id">
+                        <strong>Salesman:</strong>
+                        <span t-esc="salesman_id"/>
+                    </div><br/>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>SI NO</th>
+                                <th>Package</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Width</th>
+                                <th>Height</th>
+                                <th>Weight</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="i" t-value="1" />
+                            <t t-foreach="values" t-as="doc">
+                                <tr>
+                                    <td>
+                                      <b><span t-esc="i"/></b>
+                                      <t t-set="i" t-value="i+1"/>
+                                    </td>
+                                    <td>
+                                        <b><span t-esc="doc['serial_number']"/></b>
+                                    </td>
+                                </tr>
+                                <t t-set="j" t-value="1"/>
+                                <t t-foreach="doc['recordset']" t-as="each">
+                                    <tr>
+                                        <td>
+                                            <span t-esc="i-1"/>.<span t-esc="j"/>
+                                            <t t-set="j" t-value="j+1"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="each['package_name']"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="each['product']"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="each['product_uom_qty']"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="each['package_width']"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="each['package_height']"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="each['package_maximum_weight']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

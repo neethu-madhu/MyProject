@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--   defines form b=view for the wizard     -->
+    <record id="package_bundle_wizard_form" model="ir.ui.view">
+        <field name="name">package.bundle.report.wizard</field>
+        <field name="model">package.bundle.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Package Bundles">
+                <group>
+                    <group string="Dates">
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+                    </group>
+                    <group string="salesman_id">
+                        <field name="salesman_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="pdf_report" string="Print PDF" type="object" class="oe_highlight, btn-primary" />
+                    <button name="excel_report" string="Print Excel" type="object" class="oe_highlight, btn-primary" />
+                    <button string="Cancel" special="cancel" class="oe_highlight, btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--  wizard action  -->
+    <record id="package_bundle_wizard" model="ir.actions.act_window">
+        <field name="name">Package Bundles</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">package.bundle.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="package_bundle_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <!-- defines menu inside inventory   -->
+    <menuitem id="package_bundle_report"
+              name="Package Bundles Report"
+              parent="stock.menu_stock_root"
+              action="package_bundle_wizard"/>
+</odoo>

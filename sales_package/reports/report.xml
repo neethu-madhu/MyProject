@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="report_package_bundle"
+            string="Package Bundles PDF Report"
+            model="package.bundles"
+            report_type="qweb-pdf"
+            file="sales_package.report_package_bundles"
+            name="sales_package.report_package_bundles"/>
+
+        <report
+            id="report_package_bundle_xlsx"
+            string="Package Bundles Excel Report"
+            model="package.bundles"
+            report_type="xlsx"
+            file="sales_package.report_package_bundles_xlsx"
+            name="sales_package.report_package_bundles_xlsx"/>
+
+    </data>
+</odoo>

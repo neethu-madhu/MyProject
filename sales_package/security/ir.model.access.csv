@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sales_package,sales.package,model_sales_package,sales_package.group_package_user,1,0,0,0
+access_package_bundle,package.bundle,model_package_bundles,sales_package.group_package_user,1,1,0,0
+access_sales_packages,sales.packages,model_sales_package,sales_package.group_package_manager,1,1,1,1
+access_package_bundles,package.bundles,model_package_bundles,sales_package.group_package_manager,1,1,1,1
