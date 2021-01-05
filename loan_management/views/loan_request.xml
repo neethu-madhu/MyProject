@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--  form view for loan.request  -->
+    <record model="ir.ui.view" id="loan_request_form_view">
+        <field name="name">loan.request.form</field>
+        <field name="model">loan.request</field>
+        <field name="arch" type="xml">
+            <form string="Loan Proofs">
+                <header>
+
+                    <button name="action_send_request" type="object" states="draft" string='Apply' class="oe_highlight"/>
+<!--                    <button name="action_done_request" type="object" states="sent" string='Done' class="oe_highlight"/>-->
+                    <button name="action_cancel" type="object" string="Cancel" states="draft" />
+                    <button name="action_approve" type="object" string="Approve" states="sent" class="oe_highlight"/>
+                    <button name="action_refuse" type="object" string="Refuse" states="sent" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,approve"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="sequence_no"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="applicant_name" widget="res_partner_many2one"
+                                   context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                   options='{"always_reload": True}'/>
+                            <field name="applicant_Age"/>
+                            <field name="loan_schemes_id"/>
+<!--                            <field name="loan_types_id"/>-->
+                        </group>
+                        <group>
+                            <field name="currency_id"/>
+                            <field name="principal_amount"/>
+                            <field name="applied_date"/>
+                            <field name="approved_date"/>
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="General Info" id="general_info">
+                            <group>
+                                <field name="applicant_name" readonly="1"/>
+                                <field name="applied_date" readonly="1"/>
+                                <field name="principal_amount" readonly="1"/>
+                                <field name="loan_schemes_id" readonly="1"/>
+                                <field name="scheme_duration" readonly="1"/>
+                                <field name="rate_of_interest" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Installments">
+                            <field name="loan_installment_id">
+<!--                                <tree>-->
+                                    <field name="payment_date"/>
+                                    <field name="paid_amount"/>
+<!--                                    <field string="Status"/>-->
+<!--                                </tree>-->
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--  tree view for loan.request  -->
+    <record model="ir.ui.view" id="loan_request_tree">
+        <field name="name">loan.request.tree</field>
+        <field name="model">loan.request</field>
+        <field name="arch" type="xml">
+            <tree string="Loan Proofs">
+                <field name="sequence_no"/>
+                <field name="applicant_name"/>
+                <field name="applied_date"/>
+                <field name="approved_date"/>
+                <field name="principal_amount"/>
+<!--                <field name="loan_types_id"/>-->
+                <field name="loan_schemes_id"/>
+                <field name="state" decoration-success="state == 'loan_request' or state == 'done'"
+                                   decoration-info="state == 'draft' or state == 'sent'"
+                                   widget="badge" optional="show"/>
+            </tree>
+        </field>
+    </record>
+    <!--  action for loan.request -->
+    <record id="Loan_request" model="ir.actions.act_window">
+        <field name="name">Loan Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">loan.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new record!
+            </p>
+        </field>
+    </record>
+    <menuitem name="Loan Request"
+              id="menu_loan_request"
+              sequence="3"
+              parent="menu_loans" action="Loan_request"/>
+
+
+<!--    <menuitem name="Installments"-->
+<!--              id="menu_installments"-->
+<!--              parent="menu_loans" action="loan_installments"/>-->
+</odoo>

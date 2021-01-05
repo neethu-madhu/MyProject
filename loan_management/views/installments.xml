@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--   Form view  -->
+    <record id="loan_installments_form_view" model="ir.ui.view">
+            <field name="name">loan.installments.form</field>
+            <field name="model">loan.installments</field>
+            <field name="arch" type="xml">
+                <form string="Loan Installments">
+                    <header>
+                        <button name="action_payment_register" type="object" states="draft" string="Register Payment" class="oe_highlight"/>
+<!--                        <button name="action_compute" type="object" string="Compute" class="oe_highlight" states="paid"/>-->
+                        <field name="state" widget="statusbar" statusbar_visible="draft,paid"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" title="Paid" bg_color="bg-success" attrs="{'invisible': [('state', '!=', 'paid')]}"/>
+                        <group>
+                            <group>
+                                <field name="loan_id" required="1"/>
+                                <field name="sequence_id" required="1"/>
+                                <field name="name" />
+                                <field name="age" />
+    <!--                            <field name="loan_amount" />-->
+                            </group>
+                            <group>
+                                <field name="amount" widget="monetary"/>
+                                <field name="date" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    <!--  Tree view  -->
+    <record model="ir.ui.view" id="loan_installments_tree">
+        <field name="name">loan.installments.tree</field>
+        <field name="model">loan.installments</field>
+        <field name="arch" type="xml">
+            <tree string="Loan Installments">
+                <field name="loan_id"/>
+                <field name="name"/>
+<!--                <field name="age"/>-->
+<!--                <field name="loan_amount"/>-->
+                <field name="amount"/>
+                <field name="date"/>
+                <field name="state" decoration-success="state == 'paid'"
+                                   decoration-info="state == 'draft' or state == 'paid'"
+                                   widget="badge" optional="show"/>
+            </tree>
+        </field>
+    </record>
+    <!--  action for loan.installments -->
+    <record id="loan_installments" model="ir.actions.act_window">
+        <field name="name">Loan Installments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">loan.installments</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new record!
+            </p>
+        </field>
+    </record>
+    <menuitem name="Installments" id="menu_installments" sequence="1" parent="menu_loans" action="loan_installments"/>
+</odoo>

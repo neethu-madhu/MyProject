@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--  form view for loan scheme  -->
+    <record model="ir.ui.view" id="loan_schemes_form">
+        <field name="name">loan.schemes.form</field>
+        <field name="model">loan.schemes</field>
+        <field name="arch" type="xml">
+            <form string="Loan Schemes">
+                <sheet>
+                    <header>
+                        <h1>New</h1>
+                    </header>
+                    <group class="col-8">
+                        <field name="name"/>
+                    </group>
+                    <group string="Details" class="col-8">
+                        <field name="duration"/>
+                        <field name="interest_rate"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--  tree view for loan scheme  -->
+    <record model="ir.ui.view" id="loan_schemes_tree">
+        <field name="name">loan.schemes.tree</field>
+        <field name="model">loan.schemes</field>
+        <field name="arch" type="xml">
+            <tree string="Loan Schemes">
+                <field name="name"/>
+                <field name="duration"/>
+                <field name="interest_rate"/>
+            </tree>
+        </field>
+    </record>
+    <!--  action for loan schemes -->
+    <record id="Loan_schemes" model="ir.actions.act_window">
+        <field name="name">Loan Schemes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">loan.schemes</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new record!
+            </p>
+        </field>
+    </record>
+
+    <!--  form view for loan types  -->
+    <record model="ir.ui.view" id="loan_types_form">
+        <field name="name">loan.types.form</field>
+        <field name="model">loan.types</field>
+        <field name="arch" type="xml">
+            <form string="Loan Types">
+                <sheet>
+                    <group class="col-8">
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+                    <group string="General">
+                        <group>
+                            <field name="interest_payable"/>
+                        </group>
+                        <group>
+                            <field name="repayment_method"/>
+                            <field name="disburse_method"/>
+                        </group>
+                    </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--  tree view for loan types  -->
+    <record model="ir.ui.view" id="loan_types_tree">
+        <field name="name">loan.types.tree</field>
+        <field name="model">loan.types</field>
+        <field name="arch" type="xml">
+            <tree string="Loan Types">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="interest_payable"/>
+                <field name="repayment_method"/>
+                <field name="disburse_method"/>
+            </tree>
+        </field>
+    </record>
+    <!--  action for loan types -->
+    <record id="Loan_types" model="ir.actions.act_window">
+        <field name="name">Loan Types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">loan.types</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new record!
+            </p>
+        </field>
+    </record>
+
+
+    <!--  form view for loan proofs  -->
+    <record model="ir.ui.view" id="loan_proofs_form">
+        <field name="name">loan.proofs.form</field>
+        <field name="model">loan.proofs</field>
+        <field name="arch" type="xml">
+            <form string="Loan Proofs">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="proof_name"/>
+                            <field name="mandatory_proof"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--  tree view for loan proofs  -->
+    <record model="ir.ui.view" id="loan_proofs_tree">
+        <field name="name">loan.proofs.tree</field>
+        <field name="model">loan.proofs</field>
+        <field name="arch" type="xml">
+            <tree string="Loan Proofs">
+                <field name="proof_name"/>
+                <field name="mandatory_proof"/>
+            </tree>
+        </field>
+    </record>
+    <!--  action for loan proofs -->
+    <record id="Loan_proofs" model="ir.actions.act_window">
+        <field name="name">Loan Proofs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">loan.proofs</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new record!
+            </p>
+        </field>
+    </record>
+    <!--  action for  -->
+    <record id="Loan_management" model="ir.actions.act_window">
+        <field name="name">Loan Management</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">loan.management</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new record!
+            </p>
+        </field>
+    </record>
+    <!--  menu item  -->
+    <menuitem name="Loan Management" id="menu_loan_management_root" sequence="1"/>
+    <menuitem name="Loans"
+              id="menu_loans"
+              sequence="1" parent="menu_loan_management_root"
+              action="Loan_request"/>
+    <menuitem name="Accounting"
+              id="menu_accounting"
+              sequence="2" parent="menu_loan_management_root"/>
+    <!--  Configuration menu  -->
+    <menuitem name="Configuration"
+              id="menu_configuration"
+              sequence="2" parent="menu_loan_management_root"/>
+    <menuitem name="Loan Proofs"
+              id="menu_loan_proofs"
+              sequence="1"
+              parent="menu_configuration" action="Loan_proofs"/>
+    <menuitem name="Loan Types"
+              id="menu_loan_types"
+              sequence="2"
+              parent="menu_configuration" action="Loan_types"/>
+    <menuitem name="Loan Schemes"
+              id="menu_loan_schemes"
+              sequence="3"
+              parent="menu_configuration" action="Loan_schemes"/>
+
+</odoo>
