@@ -16,13 +16,10 @@
                         <group>
                             <group>
                                 <field name="loan_id" required="1"/>
-                                <field name="sequence_id" required="1"/>
-                                <field name="name" />
-                                <field name="age" />
-    <!--                            <field name="loan_amount" />-->
+                                <field name="sequence_no" required="1"/>
                             </group>
                             <group>
-                                <field name="amount" widget="monetary"/>
+                                <field name="amount"/>
                                 <field name="date" />
                             </group>
                         </group>
@@ -37,9 +34,6 @@
         <field name="arch" type="xml">
             <tree string="Loan Installments">
                 <field name="loan_id"/>
-                <field name="name"/>
-<!--                <field name="age"/>-->
-<!--                <field name="loan_amount"/>-->
                 <field name="amount"/>
                 <field name="date"/>
                 <field name="state" decoration-success="state == 'paid'"
@@ -48,6 +42,7 @@
             </tree>
         </field>
     </record>
+
     <!--  action for loan.installments -->
     <record id="loan_installments" model="ir.actions.act_window">
         <field name="name">Loan Installments</field>
@@ -60,5 +55,6 @@
             </p>
         </field>
     </record>
-    <menuitem name="Installments" id="menu_installments" sequence="1" parent="menu_loans" action="loan_installments"/>
+    <!--  menu item  -->
+    <menuitem name="Installments" id="menu_installments" sequence="2" parent="menu_loans" action="loan_installments"/>
 </odoo>

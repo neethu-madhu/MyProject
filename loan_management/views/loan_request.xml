@@ -23,12 +23,10 @@
                     </div>
                     <group>
                         <group>
-                            <field name="applicant_name" widget="res_partner_many2one"
+                            <field name="partner_id" widget="res_partner_many2one"
                                    context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
                                    options='{"always_reload": True}'/>
-                            <field name="applicant_Age"/>
                             <field name="loan_schemes_id"/>
-<!--                            <field name="loan_types_id"/>-->
                         </group>
                         <group>
                             <field name="currency_id"/>
@@ -38,27 +36,6 @@
 
                         </group>
                     </group>
-                    <notebook>
-                        <page string="General Info" id="general_info">
-                            <group>
-                                <field name="applicant_name" readonly="1"/>
-                                <field name="applied_date" readonly="1"/>
-                                <field name="principal_amount" readonly="1"/>
-                                <field name="loan_schemes_id" readonly="1"/>
-                                <field name="scheme_duration" readonly="1"/>
-                                <field name="rate_of_interest" readonly="1"/>
-                            </group>
-                        </page>
-                        <page string="Installments">
-                            <field name="loan_installment_id">
-<!--                                <tree>-->
-                                    <field name="payment_date"/>
-                                    <field name="paid_amount"/>
-<!--                                    <field string="Status"/>-->
-<!--                                </tree>-->
-                            </field>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -71,11 +48,10 @@
         <field name="arch" type="xml">
             <tree string="Loan Proofs">
                 <field name="sequence_no"/>
-                <field name="applicant_name"/>
+                <field name="partner_id"/>
                 <field name="applied_date"/>
                 <field name="approved_date"/>
                 <field name="principal_amount"/>
-<!--                <field name="loan_types_id"/>-->
                 <field name="loan_schemes_id"/>
                 <field name="state" decoration-success="state == 'loan_request' or state == 'done'"
                                    decoration-info="state == 'draft' or state == 'sent'"
@@ -95,13 +71,10 @@
             </p>
         </field>
     </record>
+    <!--  menu item Loan Request  -->
     <menuitem name="Loan Request"
               id="menu_loan_request"
-              sequence="3"
+              sequence="1"
               parent="menu_loans" action="Loan_request"/>
 
-
-<!--    <menuitem name="Installments"-->
-<!--              id="menu_installments"-->
-<!--              parent="menu_loans" action="loan_installments"/>-->
 </odoo>

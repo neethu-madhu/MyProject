@@ -1,7 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_loan_management,loan.management,model_loan_management,,1,1,1,1
-access_loan_proofs,loan.proofs,model_loan_proofs,,1,1,1,1
-access_loan_types,loan.types,model_loan_types,,1,1,1,1
 access_loan_schemes,loan.schemes,model_loan_schemes,,1,1,1,1
 access_loan_request,loan.request,model_loan_request,,1,1,1,1
 access_loan_installments,loan.installments,model_loan_installments,,1,1,1,1
