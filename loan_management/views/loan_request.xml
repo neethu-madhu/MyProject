@@ -26,14 +26,15 @@
                             <field name="partner_id" widget="res_partner_many2one"
                                    context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
                                    options='{"always_reload": True}'/>
-                            <field name="loan_schemes_id"/>
+                            <field name="email"/>
+<!--                            <field name="function"/>-->
+                            <field name="applied_date"/>
                         </group>
                         <group>
                             <field name="currency_id"/>
                             <field name="principal_amount"/>
-                            <field name="applied_date"/>
-                            <field name="approved_date"/>
-
+                            <field name="loan_schemes_id"/>
+                            <field name="approved_date" states="approve"/>
                         </group>
                     </group>
                 </sheet>
@@ -49,11 +50,12 @@
             <tree string="Loan Proofs">
                 <field name="sequence_no"/>
                 <field name="partner_id"/>
+                <field name="email"/>
                 <field name="applied_date"/>
-                <field name="approved_date"/>
                 <field name="principal_amount"/>
                 <field name="loan_schemes_id"/>
-                <field name="state" decoration-success="state == 'loan_request' or state == 'done'"
+                <field name="approved_date"/>
+                <field name="state" decoration-success="state == 'loan_request' or state == 'approve'"
                                    decoration-info="state == 'draft' or state == 'sent'"
                                    widget="badge" optional="show"/>
             </tree>

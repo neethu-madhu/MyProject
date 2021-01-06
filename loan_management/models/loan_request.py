@@ -14,10 +14,14 @@ class LoanRequest(models.Model):
                               required=True,
                               copy=False,
                               default='New')
+    # partner information
     partner_id = fields.Many2one('res.partner', required=True, string='Applicant Name',
                                  help='Company or individual that lends the money at an interest rate.')
+    email = fields.Char(string="Email", related='partner_id.email')
+    function = fields.Char(string="Job Position", related='partner_id.function')
+
     applied_date = fields.Date(string='Applied Date', help='Start of the moves', default=datetime.today())
-    approved_date = fields.Date(string='Approved Date')
+    approved_date = fields.Date(string='Approved Date', help='Date of approval', default=datetime.today())
     currency_id = fields.Many2one('res.currency',
                                   string="Currency")
     principal_amount = fields.Monetary(string='Principal Amount')
