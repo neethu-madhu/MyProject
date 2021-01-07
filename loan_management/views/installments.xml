@@ -16,7 +16,8 @@
                         <group>
                             <group>
                                 <field name="loan_id" required="1"/>
-                                <field name="sequence_no" required="1"/>
+<!--                                <field name="partner_id"/>-->
+<!--                                <field name="email"/>-->
                             </group>
                             <group>
                                 <field name="amount"/>

@@ -1,5 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_loan_management,loan.management,model_loan_management,,1,1,1,1
-access_loan_schemes,loan.schemes,model_loan_schemes,,1,1,1,1
-access_loan_request,loan.request,model_loan_request,,1,1,1,1
-access_loan_installments,loan.installments,model_loan_installments,,1,1,1,1
+access_loan_management,loan.management,model_loan_management,loan_management.group_loan_user,1,1,1,1
+access_loan_managements,loan.management,model_loan_management,loan_management.group_loan_manager,1,1,1,1
+access_loan_scheme,loan.schemes,model_loan_schemes,loan_management.group_loan_user,1,0,0,0
+access_loan_schemes,loan.schemes,model_loan_schemes,loan_management.group_loan_manager,1,1,1,1
+access_loan_request,loan.request,model_loan_request,loan_management.group_loan_user,1,1,1,0
+access_loan_requests,loan.request,model_loan_request,loan_management.group_loan_manager,1,1,1,1
+access_loan_installment,loan.installments,model_loan_installments,loan_management.group_loan_user,1,1,1,0
+access_loan_installments,loan.installments,model_loan_installments,loan_management.group_loan_manager,1,1,1,1
+access_loan_request_line,loan.request.line,model_loan_request_line,loan_management.group_loan_user,1,1,0,0
+access_loan_request_lines,loan.request.line,model_loan_request_line,loan_management.group_loan_manager,1,1,1,1

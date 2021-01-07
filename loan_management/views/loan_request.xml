@@ -11,8 +11,8 @@
                     <button name="action_send_request" type="object" states="draft" string='Apply' class="oe_highlight"/>
 <!--                    <button name="action_done_request" type="object" states="sent" string='Done' class="oe_highlight"/>-->
                     <button name="action_cancel" type="object" string="Cancel" states="draft" />
-                    <button name="action_approve" type="object" string="Approve" states="sent" class="oe_highlight"/>
-                    <button name="action_refuse" type="object" string="Refuse" states="sent" class="oe_highlight"/>
+                    <button name="action_approve" type="object" string="Approve" states="sent" class="oe_highlight" groups="loan_management.group_loan_manager"/>
+                    <button name="action_refuse" type="object" string="Refuse" states="sent" class="oe_highlight" groups="loan_management.group_loan_manager"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,sent,approve"/>
                 </header>
                 <sheet>
@@ -28,7 +28,7 @@
                                    options='{"always_reload": True}'/>
                             <field name="email"/>
 <!--                            <field name="function"/>-->
-                            <field name="applied_date"/>
+                            <field name="applied_date" states="sent,approve"/>
                         </group>
                         <group>
                             <field name="currency_id"/>
@@ -37,6 +37,25 @@
                             <field name="approved_date" states="approve"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="General">
+                            <group class="col-md-6">
+                                <field name="interest_amount" readonly="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="monthly_payment" readonly="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </page>
+                        <page string="Installment">
+                            <field name="loan_lines">
+                                <tree string="Installments" editable="bottom">
+                                    <field name="date"/>
+                                    <field name="amount"/>
+                                    <field name="paid" readonly="1" invisibile="1"/>
+                                </tree>
+                            </field>
+
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -55,8 +74,8 @@
                 <field name="principal_amount"/>
                 <field name="loan_schemes_id"/>
                 <field name="approved_date"/>
-                <field name="state" decoration-success="state == 'loan_request' or state == 'approve'"
-                                   decoration-info="state == 'draft' or state == 'sent'"
+                <field name="state" decoration-success="state == 'approve'"
+                                   decoration-info="state == 'sent' or state == 'draft'"
                                    widget="badge" optional="show"/>
             </tree>
         </field>
